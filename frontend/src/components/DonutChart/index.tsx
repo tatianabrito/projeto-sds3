@@ -1,7 +1,7 @@
 import axios from "axios";
 import Chart from "react-apexcharts";
 import { useState, useEffect } from 'react';
-import { saleSum } from "types/sale";
+import { SaleSum } from "types/sale";
 import { BASE_URL } from "utils/requests";
 
 type ChartData = {
@@ -16,7 +16,7 @@ const DonutChart = () => {
     useEffect(() => {
         axios.get(`${BASE_URL}/sales/amount-by-seller`)
             .then(response => {
-                const data = response.data as saleSum[];
+                const data = response.data as SaleSum[];
                 const myLabels = data.map(x => x.sellerName);
                 const mySeries = data.map(x => x.sum);
 
@@ -24,12 +24,6 @@ const DonutChart = () => {
 
             });
     }, []);
-    //FORMA ERRADA
-
-    //  const mockData = {
-    //      series: [477138, 499928, 444867, 220426, 473088],
-    //      labels: ['Anakin', 'Barry Allen', 'Kal-El', 'Logan', 'Padmé']
-    //  }
 
     const options = {
         legend: {
